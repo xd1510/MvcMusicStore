@@ -17,7 +17,8 @@ namespace MvcMusicStore.Controllers
         // GET: Reviews
         public ActionResult Index()
         {
-            return View(db.Reviews.ToList());
+            var reviews = db.Reviews.Include(r => r.Album);
+            return View(reviews.ToList());
         }
 
         // GET: Reviews/Details/5
@@ -38,6 +39,7 @@ namespace MvcMusicStore.Controllers
         // GET: Reviews/Create
         public ActionResult Create()
         {
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumID", "Title");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace MvcMusicStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReviewID,AlmbumID,Contents,ReviwerEmail")] Review review)
+        public ActionResult Create([Bind(Include = "ReviewID,AlbumID,Contents,ReviwerEmail")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace MvcMusicStore.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumID", "Title", review.AlbumID);
             return View(review);
         }
 
@@ -70,6 +73,7 @@ namespace MvcMusicStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumID", "Title", review.AlbumID);
             return View(review);
         }
 
@@ -78,7 +82,7 @@ namespace MvcMusicStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReviewID,AlmbumID,Contents,ReviwerEmail")] Review review)
+        public ActionResult Edit([Bind(Include = "ReviewID,AlbumID,Contents,ReviwerEmail")] Review review)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace MvcMusicStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AlbumID = new SelectList(db.Albums, "AlbumID", "Title", review.AlbumID);
             return View(review);
         }
 

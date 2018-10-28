@@ -210,6 +210,10 @@
     <Compile Include="Migrations\201810261019028_cambios varios.Designer.cs">
       <DependentUpon>201810261019028_cambios varios.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810270958543_album.cs" />
+    <Compile Include="Migrations\201810270958543_album.Designer.cs">
+      <DependentUpon>201810270958543_album.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -313,6 +317,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810261019028_cambios varios.resx">
       <DependentUpon>201810261019028_cambios varios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810270958543_album.resx">
+      <DependentUpon>201810270958543_album.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

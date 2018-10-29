@@ -15,12 +15,14 @@ namespace MvcMusicStore.Content
         private MvcMusicStoreContext db = new MvcMusicStoreContext();
 
         // GET: Albums
+        [Route("Albums/All")]
         public ActionResult Index()
         {
             return View(db.Albums.ToList());
         }
 
         // GET: Albums/Details/5
+        [Route("Album/{id:int}")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,6 +38,7 @@ namespace MvcMusicStore.Content
         }
 
         // GET: Albums/Create
+        //[Authorize()]
         public ActionResult Create()
         {
             return View();
